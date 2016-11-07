@@ -1,0 +1,9 @@
+#北京租车
+
+[0]
+#详情页URL
+multiple	table.small-tbimg tr td.img a	html	<a href='(<%LINK_URL%>.+?)' 
+
+[1]
+#电话
+optional	html body div#content.clearfix section#main div.detailPrimary div.col_sub ul.suUl li div.su_con div.yyarea div.p400 span.l_phone	html	(<%phone%>\d+?)<em>

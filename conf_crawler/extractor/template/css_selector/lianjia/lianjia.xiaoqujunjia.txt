@@ -1,0 +1,7 @@
+[0]
+#城市名
+multiple	div.city-change a	html	href="(<%LINK_URL%>.+?)"(?:.*?)><i></i>(<%CITY_NAME%>.+?)</a>
+
+[1]
+#小区名 小区URL 二手房数 二手房小区均价	
+multiple	div.info-panel	html	href="(<%XIAOQU_URL%>.+?)"\s*title(?:.+?)>(<%XIAOQU_NAME%>.+?)</a(?:.+?)<div class="price"><span class="num">(?:<span class="jia">)*(<%PRICE%>.+?)<(?:.+?)<span class="num">(<%NUMBER%>.+?)</span>

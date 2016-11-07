@@ -1,0 +1,54 @@
+#教育培训
+
+[0]
+#List Pages => Detail Pages & logo
+
+#LINK_URL for all styles detail pages
+multiple	table.small-tbimg tr td.t>div.tdiv a.t	html	<a href='(<%LINK_URL%>.+?)'
+multiple	table.small-tbimg tr td.t>a.t	html	<a href='(<%LINK_URL%>.+?)'
+
+#IMG_URL for Logo
+multiple	table.small-tbimg tr td.img a	html	<a href='(?:.+?)' target="_blank" rel="nofollow">\s*<img src="(?:.+?)" lazy_src='(<%IMG_URL%>.+?)'
+
+[1]
+#Detail Pages => Infos
+
+#category
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li span a	plain_text	分类
+
+#tittle
+optional	html body div#content.clearfix section#main div.detailPrimary div.mainTitle h1	html	<h1>(<%课程标题%>.+?)</h1>
+
+#one form regex
+#optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<#i class="z"><nobr>形式：</nobr></i>\s*(<a href=(?:.+?) target="_blank">(<%form%>.+?)</a>  )+\s*</li>
+
+#all form regex
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>形式：</nobr></i>\s*(?:.+?)>(<%类型%>.+?)<
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>形式：</nobr></i>\s*<a(?:.+?)>(?:.+?)</a>(?:.+?)>(<%类型%>.+?)<
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>形式：</nobr></i>\s*<a(?:.+?)>(?:.+?)</a>(?:.+?)>(?:.+?)</a>(?:.+?)>(<%类型%>.+?)<
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>形式：</nobr></i>\s*<a(?:.+?)>(?:.+?)</a>(?:.+?)>(?:.+?)</a>(?:.+?)>(?:.+?)</a>(?:.+?)>(<%类型%>.+?)</a>\s*</li>
+
+#description
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.description section#phoneFrame_con.des_con div#sub_1 div.descriptionBox article.description_con	plain_text	综合介绍
+
+#simple address	
+#optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<#i class="z"><nobr>地址：</nobr></i>\s*(<%address%>.+?)\s*</li>
+
+#detail address
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>详细地址：</nobr></i>\s*(?:.+?)>(<%上课地址%>.+?)<
+
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>详细地址：</nobr></i>\s*(?:.+?)>(?:.+?)<(?:.+?)<(?:.+?)>(<%上课地址%>.+?)<
+
+optional	html body div#content.clearfix section#main div.detailPrimary div.bc div#con_1.ContentBox div.description div.newinfo ul li	html	<i class="z"><nobr>地址：</nobr></i>\s*(<%上课地址%>.+?)\s*</li>
+
+#person	
+optional	html body div#content.clearfix section#main div.detailPrimary div.col_sub ul.suUl li div.su_con>a	html	<a target(?:.+?)>(<%联系人%>.+?)<
+
+#school
+optional	ul.suUl li div.su_con	html	<a title=(?:.+?)>(<%开课学校%>.+?)</a>
+
+#phone regex for a little body to use
+optional	html body div#content.clearfix section#main div.detailPrimary div.col_sub ul.suUl li div.su_con div.yyarea div.p400 span.l_phone	html	(<%联系电话%>\d+)<
+
+#phone regex for a lot body to use
+optional	html body div#content.clearfix section#main div.detailPrimary div.col_sub ul.suUl li div.su_con span#t_phone.phone.tel	html	(<%联系电话%>\d+)<

@@ -1,0 +1,11 @@
+[1]
+#列表页异常处理
+optional	head > title	html	(<%IS_BANNED_PAGE%>请输入验证码)
+
+optional	h2.item	html	(<%IS_BANNED_PAGE%>该页面可能被删除)
+
+[2]
+#详情页异常处理
+optional	head > title	html	(<%IS_BANNED_PAGE%>请输入验证码)
+
+optional	h2.item	html	(<%IS_BANNED_PAGE%>该页面可能被删除)

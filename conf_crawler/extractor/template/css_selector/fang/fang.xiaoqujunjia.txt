@@ -1,0 +1,20 @@
+[0]
+#城市名
+multiple	div#c01.onCont a.red	html	href="(<%CITY_URL%>.+?)"(?:.+?)>(<%CITY_NAME%>[^<]+?)<	LINK_URL=$1/housing/
+
+[1]
+#翻页
+optional	div.fanye > a#PageControl1_hlk_next	html	href="(<%NEXT_PAGE_URL%>.+?)"
+
+#小区名 小区URL 二手房数
+multiple	div.houseList div.info	html	href="(<%XIAOQU_URL%>.+?)"(?:.+?)>(<%XIAOQU_NAME%>[^<]+?)</a><span class="gray6">(?:.+?)</dd>(?:.+?)<dd>二手房源：<(?:.+?)>(<%NUMBER%>\d+)(?:.+?)</dd>\s*(?:.+?)\s*<dd(?:.+?)\s*<a href="(?:.+?)newcode=(<%XIAOQU_ID%>.+?) " target="_blank" class="iconmap" >地图位置	LINK_URL=http://fangjia.fang.com/process/$4.htm
+
+#新房
+multiple	li.newhouse	html	<dt><a href="(<%XIAOQU_URL%>.+?)"(?:.+?)>(<%XIAOQU_NAME%>[^<]+?)</a>(?:.+?)</dt>(?:.+?)<div class="price">(?:.+?)均价<(?:.+?)>(<%PRICE%>.+?)<(?:.+?)>
+
+[2]
+#二手房小区均价
+mandatory	span#price	plain_text	PRICE
+
+#租房小区均价
+optional	div#rentchart1 p.nameZS.mt15	html	<span(?:.+?)>(?:.+?)</span>(?:.+?)<span(?:.+?)>(<%PRICE1%>.+?)</span>(?:.+?)<span(?:.+?)>(<%PRICE2%>.+?)</span>(?:.+?)<span(?:.+?)>(<%PRICE3%>.+?)</span>(?:.+?)<span(?:.+?)>(<%PRICE4%>.+?)</span>

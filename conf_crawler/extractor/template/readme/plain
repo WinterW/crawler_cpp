@@ -1,0 +1,59 @@
+#使用字符串查找和正则表达式从页面中抽取当前页面的属性map，以及子页面的属性map
+
+#●格式:
+#[depth]
+#配置命令field_cmd \t 匹配类型capture_type \t 匹配模式match_pattern (\t自定义value\t)+
+#配置命令field_cmd \t 匹配类型capture_type \t 匹配模式match_pattern (\t自定义value\t)+
+#组合combine_field\t组合后的变量名\t对应的组合规则
+
+#每一节以[depth]开始，depth表示级别，从0开始，如果该depth不使用PlainTemplate进行抽取，则不配置该depth
+
+#●配置命令field_cmd:
+#1)sep 分隔符,不进行字段匹配和存取
+#2)field 子页面的字段匹配
+#3)self_field	当前页面的字段匹配
+#4)while	循环开始,多个子页面时要用此语法
+#5)endwhile	循环结束,在此保存一个子页面
+#6)if 条件开始,if/endif内部
+#7)endif 条件结束
+#8)or	多个条件的或选择,如if ... or ... or ... endif, 当某个选择项为真时,就执行endif
+#9)until 循环开始,多个子页面时要用此语法,直到不匹配
+#10)enduntil 循环结束,在此保存一个子页面
+#sep/field为匹配命令，其他为控制命令
+#if/or/endif内允许嵌套其他命令，while/endwhile内允许嵌套其他命令
+#if/while匹配时使用greedy匹配，即最大匹配
+#为实现方便，对于sep ... if/while ... sep型的匹配模式，在匹配第一个sep模式后，if/while使用最大匹配，然后再匹配第二个sep模式
+
+#●匹配类型capture_type:
+#仅当匹配类型是sep,field,self_field,until时有意义
+#1)str	字符串查找匹配 形如a<%name1%>b<%name2%>c，为实现方便，模式字符串不能出现在末尾，即不允许a<%name%>
+#2)regex	正则匹配，不能使用(a|b)型匹配
+
+
+#●示例:
+[0]
+#if
+#field	str	<tr1><%TR%></tr>	new1=http://$1.htm
+#endif
+#field	str	<good><%GOOD1%></good>	new2=http://$1/.htm
+#field	regex	<tr>(<%TR%>[^<>]+)</tr><td>(<%TD%>[^<>]+)</td>	new1=http://$1/$2.htm
+#field	regex	<good>(<%GOOD1%>[^<>]+)</good>	new2=http://$1/.htm
+if
+
+while
+field	regex	<tr><td class="t"><a href="(<%href%>[^"]+)" target="_blank" class="t">(<%title%>[^<>]+)</a>.+?class="c_58">(<%district%>[^<>]+)</a>.+?class="c_58" target="_blank">(<%xiaoqu%>[^<>]+)</a>
+endwhile
+
+or
+
+while
+field	regex	<tr><td class="t"><a href="(<%href%>[^"]+)" target="_blank" class="t">(<%title%>[^<>]+)</a>.+?class="c_58">(<%distric%>[^<>]+)</a> - (<%xiaoqu%>[^<>]+)</span>
+endwhile
+
+endif
+
+#sep	str	<col class="cotext3"/>
+#while
+#field	regex	<tr><td class="t"><a href="(<%href%>[^"]+)" target="_blank" class="t">
+#endwhile
+

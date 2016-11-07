@@ -1,0 +1,5 @@
+[1]
+#抓取为“车源审核中”页面时，将导致无法抽取联系人，及整个抽取失败，解决方法是将URL加入IS_BANNED_PAGE，重新抓取：
+optional	div.tc14-yscydh > div.tc14-cyhpon > p.tc14-cyyis	html	\s*?(<%IS_BANNED_PAGE%>此车源正在审核中)</p>
+optional	div[class~="piclist_newtop"]	html	<li><span>牌照地点：</span><a target="_blank" href="[^"]+">(<%city%>[^<]+)</a></li>
+mandatory	div[class~="tc14-cyxq-tit"]	html	<a href=[^<]+</a>(<%title%>[^<]+)</h3>

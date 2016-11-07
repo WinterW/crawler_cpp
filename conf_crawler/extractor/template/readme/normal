@@ -1,0 +1,27 @@
+#如下对各种类型模板通用:
+
+#●匹配模式match_pattern:
+#匹配模式字符串,如(<%name%>regex),类似于命名正则表达式,name即字段的名字,对于repeated capture或alternation，只能设置一个字段，这样捕捉match_results[1]，如<tr>(<%zone%>(<a href="[^"]+">([^<>]+)</a>)+)</tr>，<i>(<%value%>abc|def)</i>
+
+#●自定义value:
+#某个字段的值的拼接方式,类似webserver重定向的配置,格式:field_name=[str$n]*,$n是match pattern的第n个子表式,即第n个左'('对应的表达式, 
+#为实现方便，n不超过10，例如:url=http://mp3.youdao.com/$2/$1_list.html
+
+#●组合combine_field
+#组合combine_field\t组合后的变量名\t对应的组合规则
+#用于把抽取出的变量组合得到新的变量，组合规则中使用抽取出的变量，如已抽取到itemid和titleproduct_id，可如下拼接新的变量url：
+#combine_field	POST_URL	http://www.coo8.com/interfaces/showReviewsByGoodsId.action?flag=all&goodsId=<%itemid%>&name=<%title%
+#>&pageIndex=1
+
+#●几种特殊的输出变量
+#LINK_URL，从当前页面中抽取的普通url
+#POST_URL，从当前页面中抽取的url，以“<%param>”把url和参数分开，如:http://www.coo8.com/interfaces/showReviewsByGoodsId.action<%param%>flag=all
+#PHONE_IMG_URL，从当前页面中抽取的号码图片url
+#IMG_URL，从当前页面中抽取的其他图片url
+#NEXT_PAGE_URL，从当前页面中抽取的翻页url
+#以"__"开头的变量，是临时变量，在data_transform时被丢弃，如__URL_TEMPLATE表示模板名称，对应于seed_table中的url_template字段
+#major_category:一级小类
+#minor_category:二级小类
+#pub_time:发布时间
+#phone:联系电话
+#person:联系人

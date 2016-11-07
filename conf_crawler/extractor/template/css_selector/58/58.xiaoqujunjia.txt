@@ -1,0 +1,18 @@
+[0]
+#城市名
+multiple	dl#clist a	html	<a href="(<%CITY_URL%>.+?)"(?:.+?)>(<%CITY_NAME%>.+?)</a>	LINK_URL=$1xiaoqu/
+
+[1]
+#翻页
+optional	a.next	html	href='(<%NEXT_PAGE_URL%>.+?)'
+
+#小区名 小区URL 二手房数
+multiple	td.info	html	href="(<%LINK_URL%>.+?)"(?:.+?)>(<%XIAOQU_NAME%>.+?)\s*<span(?:.+?)\s*</a>\s*</li>\s*<li(?:.+?)\s*(?:.+?)</li>\s*<li(?:.+?)</a>(<%NUMBER%>.+?)<
+
+
+[2]
+#二手房小区均价
+mandatory	span.moneyColor	plain_text	PRICE
+
+#租房小区均价
+optional	div#dynamic_1	html	chart.setDataXML\((?:.+?)<category name='(<%M1%>.+?)月' /><category name='(<%M2%>.+?)月' /><category name='(<%M3%>.+?)月' /><category name='(<%M4%>.+?)月' /><category name='(<%M5%>.+?)月' /><category name='(<%M6%>.+?)月' /></categories>(?:.+?)<set value='(<%P11%>.*?)'(?:.+?)<set value='(<%P12%>.*?)'(?:.+?)<set value='(<%P13%>.*?)'(?:.+?)<set value='(<%P14%>.*?)'(?:.+?)<set value='(<%P15%>.*?)'(?:.+?)<set value='(<%P16%>.*?)'(?:.+?)<set value='(<%P21%>.*?)'(?:.+?)<set value='(<%P22%>.*?)'(?:.+?)<set value='(<%P23%>.*?)'(?:.+?)<set value='(<%P24%>.*?)'(?:.+?)<set value='(<%P25%>.*?)'(?:.+?)<set value='(<%P26%>.*?)'(?:.+?)<set value='(<%P31%>.*?)'(?:.+?)<set value='(<%P32%>.*?)'(?:.+?)<set value='(<%P33%>.*?)'(?:.+?)<set value='(<%P34%>.*?)'(?:.+?)<set value='(<%P35%>.*?)'(?:.+?)<set value='(<%P36%>.*?)'(?:.+?)\)

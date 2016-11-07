@@ -1,0 +1,52 @@
+MODNAME=libganji_util_encoding
+GANJI_DEV_PATH=../../../..
+
+LIB_PATH=$(GANJI_DEV_PATH)/lib
+INCLUDE_PATH=$(GANJI_DEV_PATH)/include
+
+CP=/bin/cp -f
+RM=/bin/rm -f
+MV=/bin/mv -f
+MKDIR=/bin/mkdir -p
+
+CC=g++ -ggdb -fPIC
+
+LIBS=
+STATIC_LIB=/usr/local/lib/libevent_openssl.a $(GANJI_DEV_PATH)/lib/libganji_util_thread.a $(GANJI_DEV_PATH)/lib/libganji_util_text.a /usr/lib/x86_64-linux-gnu/libssl.a 
+INCLUDES=-I/usr/include -I$(INCLUDE_PATH)
+
+CFLAGS=-D_LINUX_
+
+CXXFILES=encoding.cc utf8conv.cc md5.cc md5_generator.cc crcsign.cc encryption.cc gbk_utf8.cc main.cc
+
+OBJS=$(CXXFILES:.cc=.o)
+
+TARGET=$(LIB_PATH)/$(MODNAME).a
+
+TEST_MAIN=encode
+
+all: preexec $(TARGET) afterexec $(TEST_MAIN)
+
+$(TARGET): $(OBJS)
+	ar r $(TARGET) $(OBJS) 
+	ranlib $(TARGET)
+
+.SUFFIXES: .o .cc
+.cc.o:
+	$(CC) -c $(INCLUDES) $(LIBS) $< -o $@
+
+.PHONY: preexec
+preexec:
+	$(MKDIR) $(INCLUDE_PATH)/ganji/util/encoding
+	$(MKDIR) $(LIB_PATH)
+	$(CP) *.h $(INCLUDE_PATH)/ganji/util/encoding
+$(TEST_MAIN):$(OBJS)
+	$(CC) $(INCLUDES)  $^ -o $@ $(addprefix -L,$(LIB_PATH)) $(addprefix -l,$(LIBS)) $(STATIC_LIB)
+afterexec::
+	$(RM) *~ *.swp
+	$(RM) $(INCLUDE_PATH)/ganji/util/encoding/*_imp.h
+
+.PHONY: clean
+clean:
+	$(RM) *.o $(TARGET)
+	$(RM) -r $(INCLUDE_PATH)/ganji/util/encoding

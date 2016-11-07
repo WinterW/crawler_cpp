@@ -1,0 +1,25 @@
+#使用CSS Selector和regex获取html中的字符串.
+#●格式:
+#[depth]
+#匹配类型\tCSS Selector字符串\t匹配目标类型attribute\t待抽取属性名\t抽取后存储的变量名
+#匹配类型\tCSS Selector字符串\t匹配目标类型plain_text\t抽取后存储的变量名
+#匹配类型\tCSS Selector字符串\t匹配目标类型html/text\t匹配模式字符串(\t自定义value\t)+
+#combine_field\t组合后的变量名\t对应的组合规则
+
+#每一节以[depth]开始，depth表示级别，从0开始，如果该depth不使用Selector进行抽取，则不配置该depth
+
+#●匹配类型match_type,包括3种:
+#optional，可选
+#mandatory，必须匹配，且一个
+#multiple，允许多个
+
+#●匹配目标match_target,包括3种:
+#attribute，抽取node的某个属性
+#plain_text， node下的html对应的plain_text
+#html，从node的html中抽取
+#text，从node的text中抽取
+
+#●示例:
+[0]
+mandatory	h2.used-ico	html	<a href="(<%LINK_URL%>[^"]+)">(<%title%>[^<>]+)</a>
+multiple	div.wp > div.body_left > div.list > p > a	attribute	href	LINK_URL
