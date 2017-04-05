@@ -1,0 +1,4 @@
+20121204141600--phone_img abnormal.
+20121204141909--SendMail failed
+20121204142218--SendSms failed
+20121204142218--restart phone_img_url failed:sh: /server/www/ganji/ganji_online/cra/phone_img_svr/script/phone_img_url.sh: No such file or directory

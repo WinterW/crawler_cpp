@@ -1,0 +1,16 @@
+20160817152258--img_url abnormal.
+20160817152303--SendMail failed
+20160817152304--restart img_url_svr OK
+20160817152310--phone_img abnormal.
+20160817152315--SendMail failed
+20160817152315--restart phone_img_svr OK
+20160817152415--phone_img abnormal.
+20160817152420--SendMail failed
+20160817152421--restart phone_img_svr OK
+20160817152445--img_url abnormal.
+20160817152450--SendMail failed
+20160817152450--restart img_url_svr OK
+20160817153444--pidof ok:/sbin/pidof
+20160817153444--Starting to monitor...
+20160817153523--pidof ok:/sbin/pidof
+20160817153523--Starting to monitor...

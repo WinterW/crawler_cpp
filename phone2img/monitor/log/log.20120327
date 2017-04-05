@@ -1,0 +1,6 @@
+20120327192714--phone_img abnormal.
+20120327192714--SendMail success
+20120327192714--SendSms success
+20120327192714--restart phone_img_url failed:sh: /server/www/ganji/ganji_online/cra/phone_img_svr/script/phone_img_url.sh: No such file or directory
+20120327202349--pidof ok:/sbin/pidof
+20120327202349--Starting to monitor...

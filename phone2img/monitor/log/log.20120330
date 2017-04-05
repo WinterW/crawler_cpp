@@ -1,0 +1,16 @@
+20120330154547--pidof prog invalid
+20120330154552--pidof prog invalid
+20120330154612--pidof prog invalid
+20120330155139--pidof ok:/sbin/pidof
+20120330155139--GetLocalIp() failed
+20120330155259--pidof ok:/sbin/pidof
+20120330155259--Starting to monitor...
+20120330155259--img_url abnormal.
+20120330155300--SendMail failed
+20120330155300--SendSms success
+20120330155300--restart img_url_svr OK
+20120330155509--pidof prog invalid
+20120330155547--pidof ok:/sbin/pidof
+20120330155551--Starting to monitor...
+20120330155840--pidof ok:/sbin/pidof
+20120330155840--Starting to monitor...

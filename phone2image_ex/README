@@ -1,0 +1,116 @@
+*相关服务器
+
+**新机房
+10.126.107.2/3/6/7 nginx端口20201
+
+**账号
+ganji
+ 
+*部署路径
+/server/www/ganji/ganji_online/cra/phone_img_svr
+子目录：
+backup 存放备份文件
+bin 存放可执行程序
+conf 存放配置文件
+cron 存放crontab脚本
+log 存放程序日志
+monitor 存放监控脚本及运行日志
+script 存放脚本
+www 存放nginx/php相关配置及脚本
+ 
+*依赖的软件和库
+libgd freetype png16
+/usr/local/webserver/spawn-fcgi/bin/spawn-fcgi
+libfcgi++.so.0
+ 
+占用端口
+20202、20203
+
+*配置环境变量
+PATH中增加pidof程序的路径，如"/sbin/"
+
+*部署可执行程序
+在bin下部署程序phone_img_svr和img_url_svr
+在conf下部署配置文件conf.xml和font目录
+在script下部署脚本img_url_svr.sh  phone_img_svr.sh  update_conf.sh，执行
+$ ./phone_img_svr.sh  start
+$ ./img_url_svr.sh start
+分别启动两个服务。使用参数"stop"用于结束服务，参数“restart”用于重启服务。
+ 
+执行
+$ ./update_conf.sh用于更新两个服务的配置项
+ 
+ 
+*部署监控
+把svn中的脚本monitor.py（路径为monitor目录）和sms_client.py、smtp_client.py（可从anti_spider/monitor下获得）部署到目录monitor下。
+执行
+$ nohup python monitor.py &> /dev/null &
+ 
+*配置crontab
+每日切割nginx日志，清除过期数据
+# for phone image svr
+1 0 * * * cd /server/www/ganji/ganji_online/cra/phone_img_svr/cron; sh -x cron.sh > log/cron.log.`date \%Y\%m\%d -d "1 days ago"` 2&>1
+
+*配置nginx
+nginx由运维维护，路径为/usr/local/webserver/nginx，其配置文件conf/nginx.conf中引用了/server/www/ganji/ganji_online/cra/phone_img_svr/www/conf/img.conf。
+
+*配置img.conf:
+server {
+  listen       20201;
+  server_name  xxxxxxx;
+ 
+ 
+  log_format  mylog '$remote_addr "$http_x_forwarded_for" [$time_local] "$request" '
+                    '$request_time $status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent"';
+ 
+  access_log  /server/www/ganji/ganji_online/cra/phone_img_svr/www/log/access.log  mylog;
+  error_log  /server/www/ganji/ganji_online/cra/phone_img_svr/www/log/error.log  debug;
+ 
+  location ~* .*\.(php|html)?$
+  {
+    fastcgi_pass  127.0.0.1:9000;
+    root  /server/www/ganji/ganji_online/cra/phone_img_svr/www/root/;
+    fastcgi_param X_FORWARDED_FOR  $http_x_forwarded_for;
+    fastcgi_param HOST  $host;
+    include /usr/local/webserver/nginx/conf/fcgi.conf;
+  }
+ 
+  location /img_url {
+    fastcgi_pass 127.0.0.1:20203;
+    fastcgi_index whatever;
+    fastcgi_param X_FORWARDED_FOR  $http_x_forwarded_for;
+    fastcgi_param HOST  $host;
+    include        fastcgi_params;
+  }
+ 
+  location /phone_img {
+    fastcgi_pass 127.0.0.1:20202;
+    fastcgi_index whatever;
+    fastcgi_param X_FORWARDED_FOR  $http_x_forwarded_for;
+    fastcgi_param HOST  $host;
+  }
+}
+ 
+ 
+如下请忽略：
+ 
+设置向远端服务器的ssh无口令登录
+先在远端服务器如192.168.113.120，创建存放日志的路径，如/server/www/ganji/ganji_online/com_service/phone_img_svr/access_log。
+ 
+nginx的日志通过脚本cron_switch_log拷贝到远端服务器，如192.168.113.120的路径/server/www/ganji/ganji_online/com_service/phone_img_svr/access_log下。
+此时需要设置从本地服务器到113.120服务器的ssh无口令登录。
+在本地执行:
+$ ssh-keygen
+在${HOME}目录下生成.ssh目录，该目录下生成文件id_rsa和id_rsa.pub，把文件id_rsa.pub拷贝到113.120服务器的目录${HOME}/.ssh下并改名，如为id_rsa.pub.115.69，
+ 
+在113.120服务器的目录${HOME}/.ssh下执行：
+$ cat id_rsa.pub.115.69 >> authorized_keys
+注：需保证.ssh目录仅owner可访问。
+ 
+开机启动脚本
+从svn的script下导出bootstrap_img_svr.sh，部署至路径/server/www/ganji/ganji_online/com_service/phone_img_svr/script下，在/etc/rc.local中加入：
+ 
+ 
+# for phone image svr
+sh /server/www/ganji/ganji_online/com_service/phone_img_svr/script/bootstrap_img_svr.sh > /dev/null 2&>1 &

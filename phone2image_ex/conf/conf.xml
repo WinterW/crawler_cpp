@@ -1,0 +1,209 @@
+<phone2image>
+  <thread_num>1</thread_num>
+  <rand_font_level>2</rand_font_level>
+  <gap_level>2</gap_level>
+  <url_prefix>phone2image?</url_prefix>
+  <check_domain>0</check_domain>
+  <exclude_inner_ip>0</exclude_inner_ip>
+  <time_interval>60</time_interval>
+  <anti_spider>
+    <ip>192.168.64.18</ip>
+    <port>50329</port>
+    <time_out>10</time_out>
+  </anti_spider>
+
+  <styles>
+    <style id=-1>
+      <width>300</width>
+      <height>25</height>
+      <ptsize>18</ptsize>
+      <back_color>255,255,255</back_color>
+      <!--<font_color>0,0,0</font_color>-->
+      <font_color>57,181,74</font_color>
+      <!--<font_color>112,148,227</font_color>-->
+      <font_file>./conf/font/gothic.ttf</font_file>
+      <gap>8</gap>
+      <long_num>0</long_num>
+    </style>
+    <style id=0>
+      <width>300</width>
+      <height>25</height>
+      <ptsize>18</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>0,0,0</font_color>
+      <font_file>./conf/font/gothic_italic.ttf</font_file>
+      <gap>6</gap>
+      <long_num>0</long_num>
+    </style>
+    <style id=1>
+      <width>300</width>
+      <height>26</height>
+      <ptsize>22</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>57,181,74</font_color>
+      <font_file>./conf/font/gothic.ttf</font_file>
+      <gap>6</gap>
+      <long_num>1</long_num>
+      <line_back_num>0</line_back_num>
+      <line_font_num>-1</line_font_num>
+    </style>
+    <style id=2>
+      <width>300</width>
+      <height>20</height>
+      <ptsize>11</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>102,148,227</font_color>
+      <font_file>./conf/font/gothic.ttf</font_file>
+      <gap>5</gap>
+      <long_num>0</long_num>
+    </style>
+    <style id=3>
+      <width>300</width>
+      <height>25</height>
+      <ptsize>18</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>0,0,0</font_color>
+      <font_file>./conf/font/gothic_italic.ttf</font_file>
+      <gap>6</gap>
+      <long_num>0</long_num>
+    </style>
+    <style id=4>
+      <width>155</width>
+      <height>20</height>
+      <ptsize>18</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>25,123,48</font_color>
+      <font_file>./conf/font/gothic.ttf</font_file>
+      <gap>6</gap>
+      <long_num>1</long_num>
+    </style>
+    <style id=5>
+      <width>165</width>
+      <height>20</height>
+      <ptsize>18</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>237,27,35</font_color>
+      <font_file>./conf/font/gothic.ttf</font_file>
+      <gap>6</gap>
+      <long_num>1</long_num>
+    </style>
+    <style id=10>
+      <width>145</width>
+      <height>18</height>
+      <ptsize>16</ptsize>
+      <back_color>255,255,255</back_color>
+      <font_color>0,0,0</font_color>
+      <font_file>./conf/font/gothic.ttf</font_file>
+      <gap>6</gap>
+      <long_num>1</long_num>
+    </style>
+  </styles>
+
+  <levels>
+    <level id=0>
+      <split_num>0</split_num>
+      <indent>0</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <gap>0</gap>
+      <cluster_ch>3</cluster_ch>
+    </level>
+    <level id=1>
+      <split_num>2</split_num>
+      <indent>1</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <gap>0</gap>
+      <cluster_ch>4</cluster_ch>
+    </level>
+    <level id=2>
+      <split_num>2</split_num>
+      <indent>1</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <gap>0</gap>
+      <cluster_ch>5</cluster_ch>
+    </level>
+    <level id=3>
+      <split_num>2</split_num>
+      <indent>1</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <gap>0</gap>
+      <cluster_ch>6</cluster_ch>
+    </level>
+    <level id=4>
+      <split_num>3</split_num>
+      <indent>2</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <gap>0</gap>
+      <cluster_ch>7</cluster_ch>
+    </level>
+    <level id=5>
+      <split_num>4</split_num>
+      <indent>2</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <back_color>0,0,0</back_color>
+      <font_color>255,255,255</font_color>
+      <gap>0</gap>
+      <cluster_ch>8</cluster_ch>
+    </level>
+    <level id=6>
+      <split_num>5</split_num>
+      <indent>2</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <back_color>0,0,0</back_color>
+      <font_color>255,255,255</font_color>
+      <gap>1</gap>
+      <cluster_ch>9</cluster_ch>
+    </level>
+    <level id=7>
+      <split_num>6</split_num>
+      <indent>3</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <back_color>0,0,0</back_color>
+      <font_color>255,255,255</font_color>
+      <gap>1</gap>
+      <cluster_ch>10</cluster_ch>
+    </level>
+    <level id=8>
+      <split_num>6</split_num>
+      <indent>3</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <back_color>0,0,0</back_color>
+      <font_color>255,255,255</font_color>
+      <gap>1</gap>
+      <cluster_ch>11</cluster_ch>
+    </level>
+    <level id=9>
+      <split_num>6</split_num>
+      <indent>5</indent>
+      <line_back_num>0</line_back_num>
+      <line_font_num>0</line_font_num>
+      <back_color>0,0,0</back_color>
+      <font_color>255,255,255</font_color>
+      <gap>2</gap>
+      <cluster_ch>12</cluster_ch>
+    </level>
+  </levels>
+  <fonts>
+    <path>./conf/font/gothic_italic.ttf</path>
+    <path>./conf/font/AntykwaBold.ttf</path>
+    <path>./conf/font/Duality.ttf</path>
+    <path>./conf/font/Jura.ttf</path>
+    <path>./conf/font/StayPuft.ttf</path>
+    <path>./conf/font/TimesNewRomanBold.ttf</path>
+  </fonts>
+  <des_decode>
+    <key>1!2@3$#%K^</key>
+    <time_limit>120000</time_limit>
+    <rotate_step>5</rotate_step>
+    <check_sum_base>1000</check_sum_base>
+    <check_sum_len>3</check_sum_len>
+  </des_decode>
+</phone2image>

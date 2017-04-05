@@ -1,0 +1,40 @@
++ NGINX_LOG_EXPIRE_DAY=30
++ CRON_LOG_EXPIRE_DAY=30
++ MONITOR_LOG_EXPIRE_DAY=30
+++ date +%Y%m%d -d '30 days ago'
++ NGINX_LOG_DELETE_DATE=20120229
+++ date +%Y%m%d -d '30 days ago'
++ CRON_LOG_DELETE_DATE=20120229
+++ date +%Y%m%d -d '30 days ago'
++ MONITOR_LOG_DELETE_DATE=20120229
+++ hostname
++ HOST_NAME=yz-cra-cr-b01
+++ date +%Y%m%d -d '1 days ago'
++ YESTERDAY=20120329
++ YESTERDAY_ACCESS_LOG=access.log.yz-cra-cr-b01.20120329
++ YESTERDAY_ERROR_LOG=error.log.yz-cra-cr-b01.20120329
++ NGINX_BIN=/usr/local/webserver/nginx/sbin/nginx
++ SVR_PATH=/server/www/ganji/ganji_online/cra/phone_img_svr/
++ NGINX_LOG_PATH=/server/www/ganji/ganji_online/cra/phone_img_svr//www/log
++ CRON_PATH=/server/www/ganji/ganji_online/cra/phone_img_svr//cron/
++ CRON_LOG_PATH=/server/www/ganji/ganji_online/cra/phone_img_svr//cron//log
++ MONITOR_LOG_PATH=/server/www/ganji/ganji_online/cra/phone_img_svr//monitor/log
++ REMOTE_SERVER=192.168.113.120
++ REMOTE_PATH=/home/ganji/phone_img_svr/access_log/
++ '[' '!' -d /server/www/ganji/ganji_online/cra/phone_img_svr//cron//log ']'
++ cd /server/www/ganji/ganji_online/cra/phone_img_svr//www/log
++ rm -rf access.log.yz-cra-cr-b01.20120229
++ rm -rf error.log.yz-cra-cr-b01.20120229
++ '[' -f access.log.yz-cra-cr-b01.20120329 ']'
++ '[' -f error.log.yz-cra-cr-b01.20120329 ']'
++ date
+Fri Mar 30 00:01:01 CST 2012
++ /bin/mv -f access.log access.log.yz-cra-cr-b01.20120329
++ /bin/mv -f error.log error.log.yz-cra-cr-b01.20120329
++ sudo /usr/local/webserver/nginx/sbin/nginx -s reload
+sudo: sorry, you must have a tty to run sudo
++ cd /server/www/ganji/ganji_online/cra/phone_img_svr//cron//log
++ rm -rf cron.log.20120229
++ cd /server/www/ganji/ganji_online/cra/phone_img_svr//monitor/log
++ rm -rf log.20120229
++ exit 0
